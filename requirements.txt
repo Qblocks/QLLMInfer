@@ -2,3 +2,5 @@ streamlit
 torch
 transformers
 peft
+xformers
+protobuf==3.20.*

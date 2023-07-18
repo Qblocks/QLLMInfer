@@ -2,17 +2,23 @@ import argparse
 import streamlit as st
 import torch
 import transformers
+from transformers import AutoTokenizer, AutoModelForCausalLM
 import peft
 import warnings
 warnings.simplefilter('ignore')
 import gc
+import os
+
 
 class InferenceModule:
-    def __init__(self, base_model: str, lora_weights: str):
-        self.tokenizer = transformers.AutoTokenizer.from_pretrained(lora_weights)
-        self.model = transformers.AutoModelForCausalLM.from_pretrained(base_model,device_map='auto',torch_dtype=torch.float16)
+    def __init__(self):
+        base_model = os.environ.get('base_model', "EleutherAI/gpt-j-6b")
+        lora_weights = os.environ.get('lora_weights', "Zangs3011/Gptj-6b-vicgalleGPT4-10epochs")
+        self.tokenizer = AutoTokenizer.from_pretrained(lora_weights)
+        self.model = AutoModelForCausalLM.from_pretrained(base_model,device_map='auto',torch_dtype=torch.float16)
         self.model = peft.PeftModel.from_pretrained(self.model, lora_weights)
-        self.generator = transformers.pipeline("text-generation",model=model,tokenizer=tokenizer)
+        self.generator = transformers.pipeline("text-generation",model=self.model,tokenizer=self.tokenizer)
+        print(100*"@")
 
     def generate_response(self, instruction: str, temperature: float = 0.4, top_p: float = 0.99, 
                 top_k: int = 40, num_beams: int = 2, max_new_tokens: int = 400, repetition_penalty: float = 1.3):
@@ -81,14 +87,8 @@ class InferenceModule:
 
         st.write('Fine-tuned Model Output:')
         st.write(finetuned_generation)
-
-def main(args):
-    inference_module = InferenceModule(base_model=args.base_model, lora_weights=args.lora_weights)
-    inference_module.initialize_streamlit_app()
+    
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Streamlit app for generating responses using a fine-tuned GPT-J-6B model with LORA weights.")
-    parser.add_argument("--base_model", type=str, default="EleutherAI/gpt-j-6b", help="Base model name or path.")
-    parser.add_argument("--lora_weights", type=str, default="Zangs3011/Gptj-6b-vicgalleGPT4-10epochs", help="LORA weights name or path.")
-    args = parser.parse_args()
-    main(args)
+    inference_module = InferenceModule()
+    inference_module.initialize_streamlit_app()
