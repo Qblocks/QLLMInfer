@@ -14,14 +14,14 @@ RUN apt-get update -y&& \
     curl -Ss https://bootstrap.pypa.io/get-pip.py | python3.10 && \
     apt-get clean && rm -rf /var/lib/apt/lists/
 
+# Upgrade pip
+RUN python3 -m pip install --upgrade pip
+
 # Set the working directory inside the container
 WORKDIR /app
 
 # Copy the requirements file into the container
 COPY requirements.txt .
-
-
-RUN python3 -m pip install --upgrade pip
 
 # Install the required Python packages
 RUN pip install --no-cache-dir -r requirements.txt
@@ -29,8 +29,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the entire current directory into the container
 COPY . .
 
-# Expose port 8501 for Streamlit
-EXPOSE 8501
+# Run Fast API app2.py file
+CMD ["uvicorn", "app:app", "--port", "8501", "--host", "0.0.0.0"]
 
-# Run the Streamlit app using the InferenceModule
-CMD streamlit run app.py --server.port 8501
+# docker run -dt --gpus all -p 8501:8501 --shm-size=12g monsterapi-llminfer

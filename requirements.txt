@@ -1,6 +1,10 @@
-streamlit
 torch
 transformers
 peft
 xformers
 protobuf==3.20.*
+uvicorn
+fastapi
+accelerate
+bitsandbytes
+scipy
