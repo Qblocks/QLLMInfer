@@ -1,14 +1,14 @@
 =====================================================
-# MonsterAPI 
-## QLLMInfer FastAPI App with GPU Inference
+# QBlocks - MonsterAPI 
+## QLLMInfer -  FastAPI App with GPU Inference
 =====================================================
 
-This repository contains a FastAPI app that uses a fine-tuned LORA weights and base model for generating responses based on user instructions. The app is designed to run with GPU support using Docker. Supports load_in_8bit.
+This repository contains a FastAPI app that uses a fine-tuned LoRA weights and base model for generating responses based on user instructions. The app is designed to run with GPU support using Docker. Supports load_in_8bit.
 
-## Checkout our No-code [MonsterAPI LLM Finetuning Service](https://docs.monsterapi.ai/fine-tune-a-large-language-model-llm/launch-a-fine-tuning-job)
-===========================================================
-
+**Checkout our No-code [MonsterAPI LLM Finetuning Service](https://docs.monsterapi.ai/fine-tune-a-large-language-model-llm/launch-a-fine-tuning-job)**
 Finetune a LLM with few clicks. This repo will let you use the finetuned model output of this service to run a dockerized inference.
+
+**Need a GPU Node, we offer cheapest price SOA GPU Nodes, checkout our pricing [here](https://docs.qblocks.cloud/gpu-computing-at-scale)**
 
 Prerequisites
 -------------
