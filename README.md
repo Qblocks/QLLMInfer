@@ -1,9 +1,14 @@
-# MonsterAPI 
 =====================================================
-## QLLMInfer Streamlit App with GPU Support
+# MonsterAPI 
+## QLLMInfer FastAPI App with GPU Inference
 =====================================================
 
-This repository contains a Streamlit app that uses a fine-tuned LORA weights and base model for generating responses based on user instructions. The app is designed to run with GPU support using Docker.
+This repository contains a FastAPI app that uses a fine-tuned LORA weights and base model for generating responses based on user instructions. The app is designed to run with GPU support using Docker. Supports load_in_8bit.
+
+## Checkout our No-code [MonsterAPI LLM Finetuning Service](https://docs.monsterapi.ai/fine-tune-a-large-language-model-llm/launch-a-fine-tuning-job)
+===========================================================
+
+Finetune a LLM with few clicks. This repo will let you use the finetuned model output of this service to run a dockerized inference.
 
 Prerequisites
 -------------
@@ -20,8 +25,8 @@ Build the Docker Image
 1. Clone this repository to your local machine:
 
 ```bash
-git clone git@github.com:Qblocks/LLMInfer.git
-cd LLMInfer/
+git clone git@github.com:Qblocks/QLLMInfer.git
+cd QLLMInfer/
 ```
 
 2. Craete config.py
