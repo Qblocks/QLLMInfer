@@ -39,6 +39,7 @@ prompt_structure =  """Below is an instruction that describes a task. Write a re
 """
 # Here is a example for a prompt structure with a placeholder for the user input for instruction fine-tuning task
 # In above prompt user input_prompt is inserted into the {input_prompt} placeholder
+load_in_8bit = False # Set this to True to fit larger models into GPU memory sacrificing some speed.
 
 ```
 More examples can be seen at [./config_examples/](./config_examples)
@@ -69,4 +70,4 @@ docker run -dt --gpus all -p 8501:8501 --shm-size=8g monsterapi-llminfer
 http://localhost:8501/docs
 ```
 
-
+### Note: By default base model is loaded in float16 precision.
